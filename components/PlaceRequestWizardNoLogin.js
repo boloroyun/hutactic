@@ -1,0 +1,14 @@
+import { Step, StepLabel, Stepper } from '@mui/material';
+import React from 'react';
+
+export default function CheckoutWizardNoLogin({ activeStep = 0 }) {
+  return (
+    <Stepper activeStep={activeStep} alternativeLabel>
+      {['Project Information', 'Send Request'].map((step) => (
+        <Step key={step}>
+          <StepLabel>{step}</StepLabel>
+        </Step>
+      ))}
+    </Stepper>
+  );
+}
