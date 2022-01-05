@@ -80,7 +80,7 @@ function AdminUsers() {
     } else {
       fetchData();
     }
-  }, [successDelete]);
+  }, [router, successDelete, userInfo]);
 
   const { enqueueSnackbar } = useSnackbar();
 

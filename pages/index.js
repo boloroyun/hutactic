@@ -58,6 +58,7 @@ export default function Home(props) {
   };
   useEffect(() => {
     fetchCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchServiceCategories = async () => {
@@ -70,6 +71,7 @@ export default function Home(props) {
   };
   useEffect(() => {
     fetchServiceCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

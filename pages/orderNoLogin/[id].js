@@ -60,7 +60,7 @@ function OrderNoLogin({ params }) {
   const orderNoLoginId = params.id;
 
   const { state } = useContext(Store);
-  const { userInfo, isAdmin } = state;
+  const { isAdmin } = state;
   const [
     { loading, error, orderNoLogin, loadingDeliver, successDeliver },
     dispatch,
@@ -98,6 +98,7 @@ function OrderNoLogin({ params }) {
         dispatch({ type: 'DELIVER_RESET' });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderNoLogin, successDeliver]);
 
   const { enqueueSnackbar } = useSnackbar();

@@ -70,7 +70,7 @@ function AdminOrderNoLogins() {
       }
     };
     fetchData();
-  }, []);
+  }, [router, userInfo]);
   return (
     <Layout title="Orders Without Login">
       <Grid container spacing={1}>

@@ -36,6 +36,7 @@ export default function ProjectInfo() {
     setValue('postalCode', shippingAddress.postalCode);
     setValue('country', shippingAddress.country);
     setValue('projectInformation', shippingAddress.projectInformation);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const submitHandler = ({

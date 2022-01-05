@@ -34,6 +34,7 @@ export default function ProjectInfoNoLogin() {
     setValue('postalCode', shippingAddressNoLogin.postalCode);
     setValue('country', shippingAddressNoLogin.country);
     setValue('projectInformation', shippingAddressNoLogin.projectInformation);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const submitHandlerNoLogin = ({

@@ -88,6 +88,7 @@ function Order({ params }) {
         dispatch({ type: 'DELIVER_RESET' });
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [order, successDeliver]);
   const { enqueueSnackbar } = useSnackbar();
 

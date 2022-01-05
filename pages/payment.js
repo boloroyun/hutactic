@@ -30,8 +30,10 @@ export default function Payment() {
     } else {
       setPaymentMethod(Cookies.get('paymentMethod') || '');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const submitHandler = (e) => {
+
+  function submitHandler(e) {
     closeSnackbar();
     e.preventDefault();
     if (!paymentMethod) {
@@ -41,7 +43,7 @@ export default function Payment() {
       Cookies.set('paymentMethod', paymentMethod);
       router.push('/placeorder');
     }
-  };
+  }
   return (
     <Layout title="Payment Method">
       <Form onSubmit={submitHandler}>
