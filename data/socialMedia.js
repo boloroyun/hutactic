@@ -1,9 +1,8 @@
 export const socialMedia = {
-  instagram: 'https://www.instagram.com/developer_satoru_akiyama/',
-  facebook: 'https://www.facebook.com/satoruakiyama1998',
-  github:
-    'https://github.com/SatoruAkiyama/nextjs-and-material-ui-template-with-header-and-footer',
-  homepage: 'https://satoruakiyama.com',
+  instagram: 'https://www.instagram.com/kingkhuu/',
+  facebook: 'https://www.facebook.com/boloroyun.tseveenjalba',
+  github: 'https://github.com/boloroyun/art-granite',
+  homepage: 'https://art-granite.vercel.app/',
   // You can add like this
   // twitter: "https://twitter.com",
 };

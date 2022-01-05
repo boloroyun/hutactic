@@ -98,7 +98,7 @@ export default function ProjectInfoNoLogin() {
                   variant="outlined"
                   fullWidth
                   id="fullName"
-                  label="Full Name"
+                  label="Name"
                   error={Boolean(errors.fullName)}
                   helperText={
                     errors.fullName
@@ -155,69 +155,13 @@ export default function ProjectInfoNoLogin() {
                   variant="outlined"
                   fullWidth
                   id="phone"
-                  label="phone"
+                  label="Phone"
                   error={Boolean(errors.phone)}
                   helperText={
                     errors.phone
                       ? errors.phone.type === 'match'
                         ? 'Please provide valid phone number.'
                         : 'Phone Number is required'
-                      : ''
-                  }
-                  {...field}
-                ></TextField>
-              )}
-            ></Controller>
-          </ListItem>
-          <ListItem>
-            <Controller
-              name="address"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: true,
-                minLength: 2,
-              }}
-              render={({ field }) => (
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  id="address"
-                  label="Address"
-                  error={Boolean(errors.address)}
-                  helperText={
-                    errors.address
-                      ? errors.address.type === 'minLength'
-                        ? 'Address length is more than 1'
-                        : 'Address is required'
-                      : ''
-                  }
-                  {...field}
-                ></TextField>
-              )}
-            ></Controller>
-          </ListItem>
-          <ListItem>
-            <Controller
-              name="city"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: true,
-                minLength: 2,
-              }}
-              render={({ field }) => (
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  id="city"
-                  label="City"
-                  error={Boolean(errors.city)}
-                  helperText={
-                    errors.city
-                      ? errors.city.type === 'minLength'
-                        ? 'City length is more than 1'
-                        : 'City is required'
                       : ''
                   }
                   {...field}
@@ -239,7 +183,7 @@ export default function ProjectInfoNoLogin() {
                   variant="outlined"
                   fullWidth
                   id="postalCode"
-                  label="Postal Code"
+                  label="Postal Code Of Your Project"
                   error={Boolean(errors.postalCode)}
                   helperText={
                     errors.postalCode
@@ -255,39 +199,11 @@ export default function ProjectInfoNoLogin() {
           </ListItem>
           <ListItem>
             <Controller
-              name="country"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: true,
-                minLength: 2,
-              }}
-              render={({ field }) => (
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  id="country"
-                  label="Country"
-                  error={Boolean(errors.country)}
-                  helperText={
-                    errors.country
-                      ? errors.country.type === 'minLength'
-                        ? 'Country length is more than 1'
-                        : 'Country is required'
-                      : ''
-                  }
-                  {...field}
-                ></TextField>
-              )}
-            ></Controller>
-          </ListItem>
-          <ListItem>
-            <Controller
               name="projectInformation"
               control={control}
               defaultValue="Please provide your project information here."
               rules={{
-                maxLength: 200,
+                maxLength: 1000,
               }}
               render={({ field }) => (
                 <TextField
@@ -297,6 +213,13 @@ export default function ProjectInfoNoLogin() {
                   id="projectInformation"
                   label="Project Information Detail"
                   error={Boolean(errors.projectInformation)}
+                  helperText={
+                    errors.projectInformation
+                      ? errors.projectInformation.type === 'maxLength'
+                        ? 'Not more than 1000 characters'
+                        : 'Project information is required'
+                      : ''
+                  }
                   {...field}
                 ></TextField>
               )}

@@ -126,6 +126,11 @@ function AdminUsers() {
                   <ListItemText primary="Products"></ListItemText>
                 </ListItem>
               </NextLink>
+              <NextLink href="/admin/services" passHref>
+                <ListItem button component="a">
+                  <ListItemText primary="Services"></ListItemText>
+                </ListItem>
+              </NextLink>
               <NextLink href="/admin/users" passHref>
                 <ListItem selected button component="a">
                   <ListItemText primary="Users"></ListItemText>
@@ -181,6 +186,7 @@ function AdminUsers() {
                                 onClick={() => deleteHandler(user._id)}
                                 size="small"
                                 variant="contained"
+                                color="error"
                               >
                                 Delete
                               </Button>

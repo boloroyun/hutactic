@@ -77,54 +77,54 @@ export default function Home(props) {
   return (
     <Layout>
       <Grid container spacing={1}>
+        <Grid item md={12} xs={12}>
+          <ListItem>
+            {' '}
+            <Carousel>
+              {featuredProducts.map((product) => (
+                <NextLink
+                  key={product._id}
+                  href={`/product/${product.slug}`}
+                  passHref
+                >
+                  <Link sx={classes.flex}>
+                    <Card sx={{ width: '100%' }}>
+                      <Box sx={{ position: 'relative' }}>
+                        <CardMedia
+                          component="img"
+                          height="400"
+                          image={product.featuredImage}
+                        />
+                        <Box
+                          sx={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            width: '100%',
+                            bgcolor: 'rgba(0, 0, 0, 0.54)',
+                            color: 'white',
+                            padding: '10px',
+                          }}
+                        >
+                          <Typography variant="h5">{product.name}</Typography>
+                          <Typography align="right" variant="body2">
+                            {product.description}
+                          </Typography>
+                          <Typography align="left" variant="body2">
+                            {product.brand}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Card>
+                  </Link>
+                </NextLink>
+              ))}
+            </Carousel>
+          </ListItem>
+        </Grid>
         <Grid item md={9} xs={12}>
           <Card sx={classes.section}>
             <List>
-              <ListItem>
-                {' '}
-                <Carousel>
-                  {featuredProducts.map((product) => (
-                    <NextLink
-                      key={product._id}
-                      href={`/product/${product.slug}`}
-                      passHref
-                    >
-                      <Link sx={classes.flex}>
-                        <Card sx={{ width: '100%' }}>
-                          <Box sx={{ position: 'relative' }}>
-                            <CardMedia
-                              component="img"
-                              height="400"
-                              image={product.featuredImage}
-                            />
-                            <Box
-                              sx={{
-                                position: 'absolute',
-                                bottom: 0,
-                                left: 0,
-                                width: '100%',
-                                bgcolor: 'rgba(0, 0, 0, 0.54)',
-                                color: 'white',
-                                padding: '10px',
-                              }}
-                            >
-                              <Typography variant="h5">
-                                {product.name}
-                              </Typography>
-                              <Typography align="right" variant="body2">
-                                {product.description}
-                              </Typography>
-                              <Typography align="left" variant="body2">
-                                {product.brand}
-                              </Typography>
-                            </Box>
-                          </Box>
-                        </Card>
-                      </Link>
-                    </NextLink>
-                  ))}
-                </Carousel>
-              </ListItem>
               <ListItem>
                 {' '}
                 <Typography component="h1" variant="h1">
@@ -212,6 +212,71 @@ export default function Home(props) {
                   </ListItem>
                 </NextLink>
               ))}
+            </List>
+          </Card>
+          <Card sx={classes.section}>
+            <List>
+              <ListItem>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography>Service Categories</Typography>
+                </Box>
+              </ListItem>
+              <Divider light />
+              {serviceCategories.map((serviceCategory) => (
+                <NextLink
+                  key={serviceCategory}
+                  href={`/searchService?serviceCategory=${serviceCategory}`}
+                  passHref
+                >
+                  <ListItem selected button component="a">
+                    <Typography>{serviceCategory}</Typography>
+                  </ListItem>
+                </NextLink>
+              ))}
+            </List>
+          </Card>
+
+          <Card sx={classes.section}>
+            <List>
+              <ListItem>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography>Contact Us</Typography>
+                </Box>
+              </ListItem>
+              <Divider light />
+              <ListItem>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography>Phone: 703-909-3897</Typography>
+                </Box>
+              </ListItem>
+              <ListItem>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-between"
+                >
+                  <Typography>Email: boloroyun@artgranitedoes.com</Typography>
+                </Box>
+              </ListItem>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.239332386159!2d-77.45185368464969!3d38.89564197957093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b64720d18f9f3b%3A0xfafd56156fada977!2sArt%20Granite%20Inc!5e0!3m2!1sen!2sus!4v1635782774750!5m2!1sen!2sus"
+                width="300"
+                height="250"
+                style={{ border: '0' }}
+                loading="lazy"
+              ></iframe>
             </List>
           </Card>
         </Grid>

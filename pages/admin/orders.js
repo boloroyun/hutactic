@@ -79,17 +79,22 @@ function AdminOrders() {
               </NextLink>
               <NextLink href="/admin/orders" passHref>
                 <ListItem selected button component="a">
-                  <ListItemText primary="Orders"></ListItemText>
+                  <ListItemText primary="Requests"></ListItemText>
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/orderNoLogins" passHref>
                 <ListItem selected button component="a">
-                  <ListItemText primary="Orders Without Login"></ListItemText>
+                  <ListItemText primary="Requests Without Login"></ListItemText>
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/products" passHref>
                 <ListItem button component="a">
                   <ListItemText primary="Products"></ListItemText>
+                </ListItem>
+              </NextLink>
+              <NextLink href="/admin/services" passHref>
+                <ListItem button component="a">
+                  <ListItemText primary="Services"></ListItemText>
                 </ListItem>
               </NextLink>
               <NextLink href="/admin/users" passHref>

@@ -25,9 +25,9 @@ const orderNoLoginSchema = new mongoose.Schema(
       },
 
       address: { type: String, required: false },
-      city: { type: String, required: true },
+      city: { type: String, required: false },
       postalCode: { type: String, required: true },
-      country: { type: String, required: true },
+      country: { type: String, required: false },
       location: {
         lat: String,
         lng: String,

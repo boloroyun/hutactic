@@ -32,7 +32,7 @@ export default function ServiceItem({ service, addToCartHandler }) {
           color="success"
           onClick={() => addToCartHandler(service)}
         >
-          Send to Get Quote List
+          Make an appointment
         </Button>
       </CardActions>
     </Card>

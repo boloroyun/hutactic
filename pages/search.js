@@ -21,22 +21,7 @@ import axios from 'axios';
 import Rating from '@mui/material/Rating';
 import { Pagination } from '@mui/material';
 
-const PAGE_SIZE = 3;
-
-const prices = [
-  {
-    name: '$1 to $50',
-    value: '1-50',
-  },
-  {
-    name: '$51 to $200',
-    value: '51-200',
-  },
-  {
-    name: '$201 to $1000',
-    value: '201-1000',
-  },
-];
+const PAGE_SIZE = 18;
 
 const ratings = [1, 2, 3, 4, 5];
 
@@ -93,9 +78,7 @@ export default function Search(props) {
   const sortHandler = (e) => {
     filterSearch({ sort: e.target.value });
   };
-  const priceHandler = (e) => {
-    filterSearch({ price: e.target.value });
-  };
+
   const ratingHandler = (e) => {
     filterSearch({ rating: e.target.value });
   };
@@ -145,19 +128,7 @@ export default function Search(props) {
                 </Select>
               </Box>
             </ListItem>
-            <ListItem>
-              <Box sx={classes.fullWidth}>
-                <Typography>Prices</Typography>
-                <Select value={price} onChange={priceHandler} fullWidth>
-                  <MenuItem value="all">All</MenuItem>
-                  {prices.map((price) => (
-                    <MenuItem key={price.value} value={price.value}>
-                      {price.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </Box>
-            </ListItem>
+
             <ListItem>
               <Box sx={classes.fullWidth}>
                 <Typography>Ratings</Typography>
