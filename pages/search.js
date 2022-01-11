@@ -170,8 +170,6 @@ export default function Search(props) {
               </Typography>
               <Select value={sort} onChange={sortHandler}>
                 <MenuItem value="featured">Featured</MenuItem>
-                <MenuItem value="lowest">Price: Low to High</MenuItem>
-                <MenuItem value="highest">Price: High to Low</MenuItem>
                 <MenuItem value="toprated">Customer Reviews</MenuItem>
                 <MenuItem value="newest">Newest Arrivals</MenuItem>
               </Select>
@@ -243,10 +241,6 @@ export async function getServerSideProps({ query }) {
   const order =
     sort === 'featured'
       ? { featured: -1 }
-      : sort === 'lowest'
-      ? { price: 1 }
-      : sort === 'highest'
-      ? { price: -1 }
       : sort === 'toprated'
       ? { rating: -1 }
       : sort === 'newest'

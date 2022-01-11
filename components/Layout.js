@@ -312,7 +312,7 @@ export default function Layout({ title, description, children }) {
                 </NextLink>
               </Grid>
               <Grid item>
-                <NextLink href="/contact" passHref>
+                <NextLink href="/contactUs" passHref>
                   <Link>
                     <Typography sx={classes.link}>Contact Us</Typography>
                   </Link>

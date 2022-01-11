@@ -34,7 +34,7 @@ export default function ProductItem({ product, addToCartHandler }) {
           color="success"
           onClick={() => addToCartHandler(product)}
         >
-          Send to Get Quote List
+          Send it to Get Quote List
         </Button>
       </CardActions>
     </Card>

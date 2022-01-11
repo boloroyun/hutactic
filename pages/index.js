@@ -272,8 +272,8 @@ export default function Home(props) {
               </ListItem>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.239332386159!2d-77.45185368464969!3d38.89564197957093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b64720d18f9f3b%3A0xfafd56156fada977!2sArt%20Granite%20Inc!5e0!3m2!1sen!2sus!4v1635782774750!5m2!1sen!2sus"
-                width="300"
-                height="250"
+                width="400"
+                height="350"
                 style={{ border: '0' }}
                 loading="lazy"
               ></iframe>
