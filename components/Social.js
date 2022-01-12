@@ -12,7 +12,7 @@ const Social = () => {
   const { instagram, facebook, github, homepage } = socialMedia;
 
   return (
-    <Grid item container spacing={1} justifyContent="center">
+    <Grid item container spacing={3} justifyContent="center">
       <Grid
         item
         component={'a'}

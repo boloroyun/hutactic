@@ -15,6 +15,8 @@ import { useSnackbar } from 'notistack';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
+import Footer from '../components/Footer';
+import Footer1 from '../components/Footer1';
 
 import {
   AppBar,
@@ -35,9 +37,7 @@ import {
   Divider,
   ListItemText,
   InputBase,
-  Grid,
 } from '@mui/material';
-import Social from '../components/Social';
 
 import { Store } from '../utils/Store';
 
@@ -100,6 +100,7 @@ export default function Layout({ title, description, children }) {
   };
   useEffect(() => {
     fetchCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [query, setQuery] = useState('');
@@ -296,50 +297,8 @@ export default function Layout({ title, description, children }) {
         <Container component="main" sx={classes.main}>
           {children}
         </Container>
-        <Box sx={classes.footer}>
-          <Grid container spacing={3}>
-            <Grid container item spacing={3} justifyContent="center">
-              <Grid item>
-                <NextLink href="/about" passHref>
-                  <Typography sx={classes.link}>About Us</Typography>
-                </NextLink>
-              </Grid>
-              <Grid item>
-                <NextLink href="/" passHref>
-                  <Link>
-                    <Typography sx={classes.link}>Home</Typography>
-                  </Link>
-                </NextLink>
-              </Grid>
-              <Grid item>
-                <NextLink href="/contactUs" passHref>
-                  <Link>
-                    <Typography sx={classes.link}>Contact Us</Typography>
-                  </Link>
-                </NextLink>
-              </Grid>
-            </Grid>
-            <Grid container item spacing={3} justifyContent="center">
-              <Social />
-            </Grid>
-            <Grid container item spacing={3}>
-              <Grid
-                item
-                container
-                component={'a'}
-                target="_blank"
-                rel="noreferrer noopener"
-                href="https://satoruakiyama.com"
-                justifyContent="center"
-                style={{
-                  textDecoration: 'none',
-                }}
-              >
-                <Typography sx={classes.copylight}>&copy;Boogii</Typography>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Box>
+        <Footer1 />
+        <Footer />
       </ThemeProvider>
     </>
   );
