@@ -7,8 +7,6 @@ import {
   TextField,
   Button,
   CircularProgress,
-  List,
-  ListItem,
   Divider,
 } from '@mui/material';
 import React, { useState } from 'react';
