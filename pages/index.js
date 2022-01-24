@@ -81,7 +81,7 @@ export default function Home(props) {
   return (
     <Layout>
       <Head>
-        <title>Cointertops</title>
+        <title>Countertops</title>
         <meta
           name="description"
           content="Best countertops in the Virginia"
