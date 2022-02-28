@@ -192,7 +192,7 @@ export default function Layout({ title, description, children }) {
                     justifyContent="space-between"
                   >
                     <Typography variant="h6">
-                      Search by stone category
+                      Search by stone categories
                     </Typography>
                     <IconButton
                       aria-label="close"
@@ -227,7 +227,7 @@ export default function Layout({ title, description, children }) {
                     justifyContent="space-between"
                   >
                     <Typography variant="h6">
-                      Search by service category
+                      Search by service categories
                     </Typography>
                     <IconButton
                       aria-label="close"
@@ -241,7 +241,7 @@ export default function Layout({ title, description, children }) {
                 {serviceCategories.map((serviceCategory) => (
                   <NextLink
                     key={serviceCategory}
-                    href={`/search?serviceCategory=${serviceCategory}`}
+                    href={`/searchService?serviceCategory=${serviceCategory}`}
                     passHref
                   >
                     <ListItem
