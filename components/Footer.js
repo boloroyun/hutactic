@@ -38,13 +38,15 @@ export default function Footer() {
           component={'a'}
           target="_blank"
           rel="noreferrer noopener"
-          href="https://satoruakiyama.com"
+          href=""
           justifyContent="center"
           style={{
             textDecoration: 'none',
           }}
         >
-          <Typography sx={classes.copylight}>&copy;Boogii</Typography>
+          <Typography sx={classes.copylight}>
+            &copy;Kingstone {new Date().getFullYear()}{' '}
+          </Typography>
         </Grid>
       </Grid>
     </Box>

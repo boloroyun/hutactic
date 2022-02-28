@@ -27,13 +27,9 @@ export default function ServiceItem({ service, addToCartHandler }) {
         </CardActionArea>
       </NextLink>
       <CardActions>
-        <Button
-          fullWidth
-          color="success"
-          onClick={() => addToCartHandler(service)}
-        >
-          Make an appointment
-        </Button>
+        <NextLink href="/contactUs">
+          <Button>Contact Us</Button>
+        </NextLink>
       </CardActions>
     </Card>
   );

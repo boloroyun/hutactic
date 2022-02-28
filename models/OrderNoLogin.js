@@ -18,7 +18,7 @@ const orderNoLoginSchema = new mongoose.Schema(
     ],
     shippingAddressNoLogin: {
       fullName: { type: String, required: true },
-      email: { type: String, required: true, unique: true },
+      email: { type: String, required: true },
       phone: {
         type: Number,
         required: true,
@@ -37,6 +37,7 @@ const orderNoLoginSchema = new mongoose.Schema(
         googleAddressId: String,
       },
       projectInformation: { type: String },
+      image: { type: String },
     },
     isDelivered: { type: Boolean, required: true, default: false },
     deliveredAt: { type: Date },

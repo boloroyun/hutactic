@@ -1,8 +1,5 @@
 export const socialMedia = {
-  instagram: 'https://www.instagram.com/kingkhuu/',
-  facebook: 'https://www.facebook.com/boloroyun.tseveenjalba',
-  github: 'https://github.com/boloroyun/art-granite',
-  homepage: 'https://art-granite.vercel.app/',
-  // You can add like this
-  // twitter: "https://twitter.com",
+  instagram: 'https://www.instagram.com/countertopsva/',
+  facebook: 'https://www.facebook.com/Countertops-101372309135767/',
+  homepage: 'https://prostone.vercel.app/',
 };

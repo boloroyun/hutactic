@@ -2,14 +2,12 @@ import { Grid } from '@mui/material';
 
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import HomeIcon from '@mui/icons-material/Home';
 import classes from '../utils/classes';
-
 import { socialMedia } from '../data/socialMedia';
 
 const Social = () => {
-  const { instagram, facebook, github, homepage } = socialMedia;
+  const { instagram, facebook, homepage } = socialMedia;
 
   return (
     <Grid item container spacing={3} justifyContent="center">
@@ -39,15 +37,6 @@ const Social = () => {
         href={instagram}
       >
         <InstagramIcon sx={classes.snsIcon} />
-      </Grid>
-      <Grid
-        item
-        component={'a'}
-        target="_blank"
-        rel="noreferrer noopener"
-        href={github}
-      >
-        <GitHubIcon sx={classes.snsIcon} />
       </Grid>
     </Grid>
   );

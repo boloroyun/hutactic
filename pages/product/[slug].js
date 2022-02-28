@@ -12,6 +12,7 @@ import {
   TextField,
   CircularProgress,
   Box,
+  CardMedia,
 } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import Layout from '../../components/Layout';
@@ -92,7 +93,7 @@ export default function ProductScreen(props) {
   return (
     <Layout title={product.name}>
       <Box sx={classes.section}>
-        <NextLink href="/" passHref>
+        <NextLink href="/search" passHref>
           <Link>
             <Typography>Back to products</Typography>
           </Link>
@@ -154,7 +155,7 @@ export default function ProductScreen(props) {
                   variant="contained"
                   onClick={addToCartHandler}
                 >
-                  send it to get quote list
+                  Add to get quote list
                 </Button>
               </ListItem>
             </List>
@@ -234,6 +235,23 @@ export default function ProductScreen(props) {
           )}
         </ListItem>
       </List>
+      {!product.featuredImage ? (
+        <Box>
+          <NextLink href="/search" passHref>
+            <Link>Back to products</Link>
+          </NextLink>
+        </Box>
+      ) : (
+        <Card sx={{ width: '100%', borderRadius: '50%' }}>
+          <Box sx={{ position: 'relative' }}>
+            <CardMedia
+              component="img"
+              height="388"
+              image={product.featuredImage}
+            />
+          </Box>
+        </Card>
+      )}
     </Layout>
   );
 }

@@ -40,6 +40,7 @@ import {
 } from '@mui/material';
 
 import { Store } from '../utils/Store';
+import Share from './Share';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
@@ -88,6 +89,8 @@ export default function Layout({ title, description, children }) {
   };
 
   const [categories, setCategories] = useState([]);
+  const [serviceCategories, setServiceCategories] = useState([]);
+
   const { enqueueSnackbar } = useSnackbar();
 
   const fetchCategories = async () => {
@@ -100,6 +103,19 @@ export default function Layout({ title, description, children }) {
   };
   useEffect(() => {
     fetchCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const fetchServiceCategories = async () => {
+    try {
+      const { data } = await axios.get(`/api/services/serviceCategories`);
+      setServiceCategories(data);
+    } catch (err) {
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+  useEffect(() => {
+    fetchServiceCategories();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -141,12 +157,12 @@ export default function Layout({ title, description, children }) {
   return (
     <>
       <Head>
-        <title>{title ? `${title} - Art Granite` : 'Art Granite'}</title>
+        <title>{title ? `${title} - Kingstone` : 'Kingstone'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <AppBar position="static" sx={classes.appbar}>
+        <AppBar position="sticky" sx={classes.appbar}>
           <Toolbar sx={classes.toolbar}>
             <Box display="flex" alignItems="center">
               <IconButton
@@ -159,7 +175,7 @@ export default function Layout({ title, description, children }) {
               </IconButton>
               <NextLink href="/" passHref>
                 <Link>
-                  <Typography sx={classes.brand}>Art Granite</Typography>
+                  <Typography sx={classes.brand}>Kingstone</Typography>
                 </Link>
               </NextLink>
             </Box>
@@ -175,7 +191,9 @@ export default function Layout({ title, description, children }) {
                     alignItems="center"
                     justifyContent="space-between"
                   >
-                    <Typography>Search by category</Typography>
+                    <Typography variant="h6">
+                      Search by stone category
+                    </Typography>
                     <IconButton
                       aria-label="close"
                       onClick={sidebarCloseHandler}
@@ -201,8 +219,45 @@ export default function Layout({ title, description, children }) {
                   </NextLink>
                 ))}
               </List>
+              <List>
+                <ListItem>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Typography variant="h6">
+                      Search by service category
+                    </Typography>
+                    <IconButton
+                      aria-label="close"
+                      onClick={sidebarCloseHandler}
+                    >
+                      <CancelIcon />
+                    </IconButton>
+                  </Box>
+                </ListItem>
+                <Divider light />
+                {serviceCategories.map((serviceCategory) => (
+                  <NextLink
+                    key={serviceCategory}
+                    href={`/search?serviceCategory=${serviceCategory}`}
+                    passHref
+                  >
+                    <ListItem
+                      button
+                      component="a"
+                      onClick={sidebarCloseHandler}
+                    >
+                      <ListItemText primary={serviceCategory}></ListItemText>
+                    </ListItem>
+                  </NextLink>
+                ))}
+              </List>
             </Drawer>
-
+            <Box>
+              <Share />
+            </Box>
             <Box sx={isDesktop ? classes.visible : classes.hidden}>
               <form onSubmit={submitHandler}>
                 <Box sx={classes.searchForm}>
@@ -228,11 +283,11 @@ export default function Layout({ title, description, children }) {
                 onChange={darkModeChangeHandler}
               ></Switch>
               <NextLink href="/cart" passHref>
-                <Link>
+                <Button color="primary">
                   <Typography component="span">
                     {cart.cartItems.length > 0 ? (
                       <Badge
-                        color="secondary"
+                        color="success"
                         badgeContent={cart.cartItems.length}
                       >
                         Get Quote List{' '}
@@ -241,8 +296,10 @@ export default function Layout({ title, description, children }) {
                       'Get Quote List'
                     )}
                   </Typography>
-                </Link>
+                </Button>
               </NextLink>
+            </Box>
+            <Box>
               {userInfo ? (
                 <>
                   <Button

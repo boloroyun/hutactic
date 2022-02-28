@@ -33,6 +33,10 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
       setLoading(false);
+      enqueueSnackbar('Email sent successfully', {
+        variant: 'success',
+      });
+
       router.push('/');
     } catch (err) {
       setLoading(false);

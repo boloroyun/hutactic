@@ -47,7 +47,7 @@ function CartScreen() {
       {cartItems.length === 0 ? (
         <Box>
           Cart is empty.{' '}
-          <NextLink href="/" passHref>
+          <NextLink href="/search" passHref>
             <Link>Go to products</Link>
           </NextLink>
         </Box>
@@ -137,7 +137,7 @@ function CartScreen() {
                   </Button>
                 </ListItem>
                 <ListItem>
-                  <NextLink href="/" passHref>
+                  <NextLink href="/search" passHref>
                     <Button color="primary" variant="contained" fullWidth>
                       Go back to products
                     </Button>

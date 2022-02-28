@@ -23,9 +23,9 @@ export default function Footer1() {
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
+
   const handleSubmit = (e) => {
     closeSnackbar();
 
@@ -43,7 +43,11 @@ export default function Footer1() {
         method: 'post',
         body: JSON.stringify(data),
       });
+      enqueueSnackbar('Email sent successfully', {
+        variant: 'success',
+      });
       setLoading(false);
+
       router.push('/');
     } catch (err) {
       setLoading(false);

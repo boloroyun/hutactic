@@ -98,6 +98,14 @@ function PlaceOrderNoLogin() {
                 </Typography>
               </ListItem>
               <ListItem>{shippingAddressNoLogin.projectInformation}</ListItem>
+              <ListItem>
+                <Image
+                  src={shippingAddressNoLogin.image}
+                  width={100}
+                  height={100}
+                  alt=""
+                />
+              </ListItem>
             </List>
           </Card>
           <Card sx={classes.section}>

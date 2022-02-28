@@ -27,15 +27,15 @@ const classes = {
   //layout
   main: {
     marginTop: 2,
-    minHeight: '80vh',
+    minHeight: '100vh',
   },
   section: {
     marginTop: 1,
-    marginBottom: 1,
+    marginBottom: 10,
   },
   // header
   appbar: {
-    backgroundColor: '#1d9123',
+    backgroundColor: '#009688',
     '& a': {
       color: '#ffffff',
       marginLeft: 1,
@@ -82,7 +82,7 @@ const classes = {
   },
   // Footer
   footer: {
-    backgroundColor: 'green',
+    backgroundColor: '#009688',
     width: `100%`,
     position: 'relative',
     overflow: 'hidden',

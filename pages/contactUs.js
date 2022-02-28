@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-
+import React, { useState, useReducer, useContext } from 'react';
 import Layout from '../components/Layout';
 import {
   TextField,
@@ -10,9 +9,30 @@ import {
   Grid,
   CircularProgress,
 } from '@mui/material';
+import { Store } from '../utils/Store';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import { getError } from '../utils/error';
+import axios from 'axios';
+import { Controller, useForm } from 'react-hook-form';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'UPLOAD_REQUEST':
+      return { ...state, loadingUpload: true, errorUpload: '' };
+    case 'UPLOAD_SUCCESS':
+      return {
+        ...state,
+        loadingUpload: false,
+        errorUpload: '',
+      };
+    case 'UPLOAD_FAIL':
+      return { ...state, loadingUpload: false, errorUpload: action.payload };
+
+    default:
+      return state;
+  }
+}
 
 export default function ContactUs() {
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();
@@ -25,7 +45,40 @@ export default function ContactUs() {
 
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const handleSubmit = (e) => {
+  const [image, setImage] = useState('');
+
+  const { dispatch } = useContext(Store);
+  const {
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const [{ loadingUpload }] = useReducer(reducer, {
+    loading: true,
+    error: '',
+  });
+
+  const uploadHandler = async (e, imageField = 'image') => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append('file', file);
+    try {
+      dispatch({ type: 'UPLOAD_REQUEST' });
+      const { data } = await axios.post('/api/contactUs/upload', bodyFormData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      dispatch({ type: 'UPLOAD_SUCCESS' });
+      setImage(imageField, data.secure_url);
+      enqueueSnackbar('File uploaded successfully', { variant: 'success' });
+    } catch (err) {
+      dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
+  };
+
+  const submitHandler = (e) => {
     closeSnackbar();
 
     e.preventDefault();
@@ -35,6 +88,7 @@ export default function ContactUs() {
       phone,
       subject,
       message,
+      image,
     };
     try {
       setLoading(true);
@@ -43,12 +97,17 @@ export default function ContactUs() {
         body: JSON.stringify(data),
       });
       setLoading(false);
+      enqueueSnackbar('Email sent successfully', {
+        variant: 'success',
+      });
+
       router.push('/');
     } catch (err) {
       setLoading(false);
       enqueueSnackbar(getError(err), { variant: 'error' });
     }
   };
+
   return (
     <Layout title="Contact Page">
       <Typography component="h1" variant="h1">
@@ -67,7 +126,7 @@ export default function ContactUs() {
           >
             Fill up the form and our team will get back to you within 24 hours.
           </Typography>
-          <form onSubmit={handleSubmit} name="contact" method="POST">
+          <form onSubmit={submitHandler} name="contact" method="POST">
             <Grid container spacing={1}>
               <Grid xs={12} item>
                 <TextField
@@ -143,6 +202,34 @@ export default function ContactUs() {
                     setMessage(e.target.value);
                   }}
                 />
+              </Grid>
+              <Grid xs={12} item>
+                <Controller
+                  name="image"
+                  control={control}
+                  defaultValue="Upload your project picture or room schema"
+                  rules={{
+                    required: false,
+                  }}
+                  render={({ field }) => (
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      id="image"
+                      label="Image"
+                      error={Boolean(errors.image)}
+                      helperText={errors.image ? 'Image is required' : ''}
+                      {...field}
+                    ></TextField>
+                  )}
+                ></Controller>
+              </Grid>
+              <Grid>
+                <Button variant="contained" component="label">
+                  Upload File
+                  <input type="file" onChange={uploadHandler} hidden />
+                </Button>
+                {loadingUpload && <CircularProgress />}
               </Grid>
               <Grid xs={12} item>
                 <Button

@@ -1,6 +1,7 @@
 import NextLink from 'next/link';
 import Head from 'next/head';
 import {
+  Button,
   Grid,
   Link,
   Typography,
@@ -10,7 +11,6 @@ import {
   CardMedia,
   List,
   ListItem,
-  Divider,
 } from '@mui/material';
 import Layout from '../components/Layout';
 import db from '../utils/db';
@@ -19,13 +19,12 @@ import Service from '../models/Service';
 
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { Store } from '../utils/Store';
 import ProductItem from '../components/ProductItem';
 import ServiceItem from '../components/ServiceItem';
+import SendIcon from '@mui/icons-material/Send';
 
-import { useSnackbar } from 'notistack';
-import { getError } from '../utils/error';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import classes from '../utils/classes';
@@ -47,44 +46,13 @@ export default function Home(props) {
     router.push('/cart');
   };
 
-  const [categories, setCategories] = useState([]);
-  const [serviceCategories, setServiceCategories] = useState([]);
-
-  const { enqueueSnackbar } = useSnackbar();
-
-  const fetchCategories = async () => {
-    try {
-      const { data } = await axios.get(`/api/products/categories`);
-      setCategories(data);
-    } catch (err) {
-      enqueueSnackbar(getError(err), { variant: 'error' });
-    }
-  };
-  useEffect(() => {
-    fetchCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const fetchServiceCategories = async () => {
-    try {
-      const { data } = await axios.get(`/api/services/serviceCategories`);
-      setServiceCategories(data);
-    } catch (err) {
-      enqueueSnackbar(getError(err), { variant: 'error' });
-    }
-  };
-  useEffect(() => {
-    fetchServiceCategories();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <Layout>
       <Head>
         <title>Countertops</title>
         <meta
           name="description"
-          content="Best countertops in the Virginia"
+          content="Best countertops in the Virginia and Maryland"
         ></meta>
         <link></link>
       </Head>
@@ -96,30 +64,28 @@ export default function Home(props) {
             passHref
           >
             <Link sx={classes.flex}>
-              <Card sx={{ width: '100%' }}>
+              <Card sx={{ width: '100%', borderRadius: '50%' }}>
                 <Box sx={{ position: 'relative' }}>
                   <CardMedia
                     component="img"
-                    height="400"
+                    height="388"
                     image={product.featuredImage}
                   />
                   <Box
                     sx={{
                       position: 'absolute',
-                      bottom: 0,
+                      top: 0,
                       left: 0,
+                      height: 38,
                       width: '100%',
-                      bgcolor: 'rgba(0, 0, 0, 0.54)',
+                      bgcolor: 'rgba(0, 0, 0, 0.38)',
                       color: 'white',
                       padding: '10px',
                     }}
                   >
-                    <Typography variant="h5">{product.name}</Typography>
-                    <Typography align="right" variant="body2">
-                      {product.description}
-                    </Typography>
-                    <Typography align="left" variant="body2">
-                      {product.brand}
+                    <Typography variant="h6">Our Projects</Typography>
+                    <Typography variant="body1">
+                      {product.category}: /{product.name}/
                     </Typography>
                   </Box>
                 </Box>
@@ -129,15 +95,17 @@ export default function Home(props) {
         ))}
       </Carousel>
       <Grid container spacing={1}>
-        <Grid item md={9} sx={12}>
+        <Grid item md={12} sx={12}>
+          <Typography variant="h1">Popular Products</Typography>
+          <NextLink href="/search" passHref>
+            <Button color="secondary">
+              Watch all stones
+              <SendIcon />
+            </Button>
+          </NextLink>
+
           <Card sx={classes.section}>
             <List>
-              <ListItem>
-                {' '}
-                <Typography component="h1" variant="h1">
-                  Popular Products
-                </Typography>
-              </ListItem>
               <ListItem>
                 {' '}
                 <Grid container spacing={5}>
@@ -154,36 +122,49 @@ export default function Home(props) {
             </List>
           </Card>
         </Grid>
-        <Grid item md={3} sx={12}>
-          <Card sx={classes.section}>
-            <List>
-              <ListItem>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                >
-                  <Typography>Product Categories</Typography>
-                </Box>
-              </ListItem>
-              <Divider light />
-              {categories.map((category) => (
-                <NextLink
-                  key={category}
-                  href={`/search?category=${category}`}
-                  passHref
-                >
-                  <ListItem selected button component="a">
-                    <Typography>{category}</Typography>
-                  </ListItem>
-                </NextLink>
-              ))}
-            </List>
-          </Card>
-        </Grid>
       </Grid>
+      <Typography variant="h6">Specials</Typography>
+
+      <Carousel>
+        {featuredProducts.map((product) => (
+          <NextLink
+            key={product._id}
+            href={`/product/${product.slug}`}
+            passHref
+          >
+            <Link sx={classes.flex}>
+              <Card sx={{ width: '100%', borderRadius: '88%' }}>
+                <Box sx={{ position: 'relative' }}>
+                  <CardMedia
+                    component="img"
+                    height="388"
+                    image={product.featuredImage}
+                  />
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      height: 38,
+                      width: '100%',
+                      bgcolor: 'rgba(0, 0, 0, 0.38)',
+                      color: 'white',
+                      padding: '10px',
+                    }}
+                  >
+                    <Typography variant="h6">Specials</Typography>
+                    <Typography variant="body1">
+                      {product.category}: /{product.name}/
+                    </Typography>
+                  </Box>
+                </Box>
+              </Card>
+            </Link>
+          </NextLink>
+        ))}
+      </Carousel>
       <Grid container spacing={1}>
-        <Grid item md={9} sx={12}>
+        <Grid item md={12} sx={12}>
           <Card sx={classes.section}>
             <List>
               <ListItem>
@@ -205,36 +186,11 @@ export default function Home(props) {
             </List>
           </Card>
         </Grid>
-        <Grid item md={3} sx={12}>
-          <Card sx={classes.section}>
-            <List>
-              <ListItem>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="space-between"
-                >
-                  <Typography>Service Categories</Typography>
-                </Box>
-              </ListItem>
-              <Divider light />
-              {serviceCategories.map((serviceCategory) => (
-                <NextLink
-                  key={serviceCategory}
-                  href={`/searchService?serviceCategory=${serviceCategory}`}
-                  passHref
-                >
-                  <ListItem selected button component="a">
-                    <Typography>{serviceCategory}</Typography>
-                  </ListItem>
-                </NextLink>
-              ))}
-            </List>
-          </Card>
-        </Grid>
       </Grid>
       <ListItem>
-        <Typography>Watch the video</Typography>
+        <Typography variant="h1" color="error">
+          Specials
+        </Typography>
       </ListItem>
       <ListItem>
         <Card>
@@ -244,7 +200,7 @@ export default function Home(props) {
               autoPlay
               controls
               margin="auto"
-              src="images/Art-Granite.mp4"
+              src="images/stoneking.mp4"
             />
           </CardActionArea>
         </Card>
@@ -260,7 +216,7 @@ export async function getServerSideProps() {
     '-reviews'
   )
     .lean()
-    .limit(10);
+    .limit(30);
   const topRatedProductsDocs = await Product.find({}, '-reviews')
     .lean()
     .sort({
