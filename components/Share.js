@@ -17,21 +17,19 @@ export default function Share() {
   return (
     <>
       <Typography>Share on</Typography>
-      <FacebookShareButton
-        url={'http://localhost:3000/product/sample-slug-0.3545137337060207'}
-      >
+      <FacebookShareButton url={'https://art-granite.vercel.app/'}>
         <FacebookIcon size={32} round />
       </FacebookShareButton>
-      <PinterestShareButton url={'http://localhost:3000'}>
+      <PinterestShareButton url={'https://art-granite.vercel.app/'}>
         <PinterestIcon size={32} round />
       </PinterestShareButton>
-      <RedditShareButton url={'http://localhost:3000'}>
+      <RedditShareButton url={'https://art-granite.vercel.app/'}>
         <RedditIcon size={32} round />
       </RedditShareButton>
-      <WhatsappShareButton url={'http://localhost:3000'}>
+      <WhatsappShareButton url={'https://art-granite.vercel.app/'}>
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
-      <LinkedinShareButton url={'http://localhost:3000'}>
+      <LinkedinShareButton url={'https://art-granite.vercel.app/'}>
         <LinkedinIcon size={32} round />
       </LinkedinShareButton>
     </>
