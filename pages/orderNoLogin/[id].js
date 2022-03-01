@@ -60,7 +60,7 @@ function OrderNoLogin({ params }) {
   const orderNoLoginId = params.id;
 
   const { state } = useContext(Store);
-  const { isAdmin } = state;
+  const { userInfo } = state;
   const [
     { loading, error, orderNoLogin, loadingDeliver, successDeliver },
     dispatch,
@@ -108,10 +108,13 @@ function OrderNoLogin({ params }) {
       dispatch({ type: 'DELIVER_REQUEST' });
       const { data } = await axios.put(
         `/api/orderNoLogins/${orderNoLogin._id}/deliver`,
-        {}
+        {},
+        {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        }
       );
       dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-      enqueueSnackbar('Order is delivered', { variant: 'success' });
+      enqueueSnackbar('Request is quoted', { variant: 'success' });
     } catch (err) {
       dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });
@@ -141,10 +144,7 @@ function OrderNoLogin({ params }) {
                 <ListItem>Email: {shippingAddressNoLogin.email}</ListItem>
                 <ListItem>Phone: {shippingAddressNoLogin.phone}</ListItem>
                 <ListItem>
-                  Project Address: {shippingAddressNoLogin.address},{' '}
-                  {shippingAddressNoLogin.city},{' '}
-                  {shippingAddressNoLogin.postalCode},{' '}
-                  {shippingAddressNoLogin.country}
+                  Project Zipcode: {shippingAddressNoLogin.postalCode}
                 </ListItem>
                 <ListItem>
                   Status:{' '}
@@ -243,7 +243,7 @@ function OrderNoLogin({ params }) {
                   </Grid>
                 </ListItem>
 
-                {isAdmin && !orderNoLogin.isDelivered ? (
+                {userInfo.isAdmin && !orderNoLogin.isDelivered ? (
                   <ListItem>
                     {loadingDeliver && <CircularProgress />}
                     <Button
@@ -252,7 +252,7 @@ function OrderNoLogin({ params }) {
                       color="primary"
                       onClick={deliverOrderNoLoginHandler}
                     >
-                      Deliver Order
+                      Quote a Request
                     </Button>
                   </ListItem>
                 ) : null}

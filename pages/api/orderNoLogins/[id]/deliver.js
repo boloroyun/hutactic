@@ -16,7 +16,10 @@ handler.put(async (req, res) => {
     orderNoLogin.deliveredAt = Date.now();
     const deliveredOrderNoLogin = await orderNoLogin.save();
     await db.disconnect();
-    res.send({ message: 'order delivered', order: deliveredOrderNoLogin });
+    res.send({
+      message: 'Request Quoted',
+      orderNoLogin: deliveredOrderNoLogin,
+    });
   } else {
     await db.disconnect();
     res.status(404).send({ message: 'Request not found' });

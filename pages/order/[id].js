@@ -103,7 +103,7 @@ function Order({ params }) {
         }
       );
       dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-      enqueueSnackbar('Order is delivered', { variant: 'success' });
+      enqueueSnackbar('Request is quoted', { variant: 'success' });
     } catch (err) {
       dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
       enqueueSnackbar(getError(err), { variant: 'error' });
@@ -252,7 +252,7 @@ function Order({ params }) {
                       color="primary"
                       onClick={deliverOrderHandler}
                     >
-                      Deliver Order
+                      Quote a Request{' '}
                     </Button>
                   </ListItem>
                 )}

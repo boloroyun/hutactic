@@ -79,14 +79,11 @@ function PlaceOrderNoLogin() {
                   Project Information
                 </Typography>
               </ListItem>
-              <ListItem>Name: {shippingAddressNoLogin.fullName}, </ListItem>
+              <ListItem>Name: {shippingAddressNoLogin.fullName} </ListItem>
               <ListItem>Email: {shippingAddressNoLogin.email}</ListItem>
               <ListItem>Phone: {shippingAddressNoLogin.phone}</ListItem>
               <ListItem>
-                Project Address: {shippingAddressNoLogin.address},{' '}
-                {shippingAddressNoLogin.city},{' '}
-                {shippingAddressNoLogin.postalCode},{' '}
-                {shippingAddressNoLogin.country}
+                Project Zipcode: {shippingAddressNoLogin.postalCode}
               </ListItem>
             </List>
           </Card>

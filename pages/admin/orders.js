@@ -149,6 +149,11 @@ function AdminOrders() {
                                 <Button variant="contained">Details</Button>
                               </NextLink>
                             </TableCell>
+                            <TableCell>
+                              <NextLink href="/contact" passHref>
+                                <Button variant="contained">Send Email</Button>
+                              </NextLink>
+                            </TableCell>
                           </TableRow>
                         ))}
                       </TableBody>

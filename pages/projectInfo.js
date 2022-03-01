@@ -213,34 +213,6 @@ export default function ProjectInfo() {
           </ListItem>
           <ListItem>
             <Controller
-              name="address"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: true,
-                minLength: 2,
-              }}
-              render={({ field }) => (
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  id="address"
-                  label="Address"
-                  error={Boolean(errors.address)}
-                  helperText={
-                    errors.address
-                      ? errors.address.type === 'minLength'
-                        ? 'Address length is more than 1'
-                        : 'Address is required'
-                      : ''
-                  }
-                  {...field}
-                ></TextField>
-              )}
-            ></Controller>
-          </ListItem>
-          <ListItem>
-            <Controller
               name="city"
               control={control}
               defaultValue=""
@@ -349,6 +321,7 @@ export default function ProjectInfo() {
                   variant="outlined"
                   fullWidth
                   multiline
+                  rows={4}
                   id="projectInformation"
                   label="Project Information Detail"
                   error={Boolean(errors.projectInformation)}
