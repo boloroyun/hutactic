@@ -175,7 +175,7 @@ export default function Layout({ title, description, children }) {
               </IconButton>
               <NextLink href="/" passHref>
                 <Link>
-                  <Typography sx={classes.brand}>Hutactic/Typography>
+                  <Typography sx={classes.brand}>Hutactic</Typography>
                 </Link>
               </NextLink>
             </Box>
