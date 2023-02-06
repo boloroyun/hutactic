@@ -157,7 +157,7 @@ export default function Layout({ title, description, children }) {
   return (
     <>
       <Head>
-        <title>{title ? `${title} - Kingstone` : 'Kingstone'}</title>
+        <title>{title ? `${title} - Hutactic` : 'Hutactic'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
       <ThemeProvider theme={theme}>
@@ -175,7 +175,7 @@ export default function Layout({ title, description, children }) {
               </IconButton>
               <NextLink href="/" passHref>
                 <Link>
-                  <Typography sx={classes.brand}>Kingstone</Typography>
+                  <Typography sx={classes.brand}>Hutactic/Typography>
                 </Link>
               </NextLink>
             </Box>
