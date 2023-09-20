@@ -15,8 +15,8 @@ Text: ${body.message}\r\n
 `;
 
   const data = {
-    to: 'boloroyun@artgranitedoes.com',
-    from: 'boloroyun@artgranitedoes.com',
+    to: 'info@hutactic.com',
+    from: body.email,
     subject: `New message from ${body.fullname}`,
     text: message,
     image: req.file,

@@ -1,20 +1,54 @@
-import { List, ListItem, Typography, TextField, Button } from '@mui/material';
+import {
+  List,
+  ListItem,
+  Typography,
+  TextField,
+  Button,
+  CircularProgress,
+} from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
 import PlaceRequestWizard from '../components/PlaceRequestWizard';
 import Form from '../components/Form';
+import axios from 'axios';
+import { useSnackbar } from 'notistack';
+import { getError } from '../utils/error';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'UPLOAD_REQUEST':
+      return { ...state, loadingUpload: true, errorUpload: '' };
+    case 'UPLOAD_SUCCESS':
+      return {
+        ...state,
+        loadingUpload: false,
+        errorUpload: '',
+      };
+    case 'UPLOAD_FAIL':
+      return { ...state, loadingUpload: false, errorUpload: action.payload };
+
+    default:
+      return state;
+  }
+}
 
 export default function ProjectInfo() {
+  const { enqueueSnackbar } = useSnackbar();
+
+  const [{ loadingUpload }] = useReducer(reducer, {
+    loading: true,
+    error: '',
+  });
+
   const {
     handleSubmit,
     control,
     formState: { errors },
     setValue,
-    getValues,
   } = useForm();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
@@ -36,6 +70,8 @@ export default function ProjectInfo() {
     setValue('postalCode', shippingAddress.postalCode);
     setValue('country', shippingAddress.country);
     setValue('projectInformation', shippingAddress.projectInformation);
+    setValue('image', shippingAddress.image);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -48,6 +84,7 @@ export default function ProjectInfo() {
     postalCode,
     country,
     projectInformation,
+    image,
   }) => {
     dispatch({
       type: 'SAVE_SHIPPING_ADDRESS',
@@ -61,6 +98,7 @@ export default function ProjectInfo() {
         country,
         location,
         projectInformation,
+        image,
       },
     });
     Cookies.set(
@@ -75,49 +113,34 @@ export default function ProjectInfo() {
         country,
         location,
         projectInformation,
+        image,
       })
     );
     router.push('/placeorder');
   };
 
-  const chooseLocationHandler = () => {
-    const fullName = getValues('fullName');
-    const email = getValues('email');
-    const phone = getValues('phone');
-
-    const address = getValues('address');
-    const city = getValues('city');
-    const postalCode = getValues('postalCode');
-    const country = getValues('country');
-    const projectInformation = getValues('projectInformation');
-    dispatch({
-      type: 'SAVE_SHIPPING_ADDRESS',
-      payload: {
-        fullName,
-        email,
-        phone,
-        address,
-        city,
-        postalCode,
-        country,
-        projectInformation,
-      },
-    });
-    Cookies.set(
-      'shippingAddress',
-      JSON.stringify({
-        fullName,
-        email,
-        phone,
-        address,
-        city,
-        postalCode,
-        country,
-        location,
-        projectInformation,
-      })
-    );
-    router.push('/map');
+  const uploadHandler = async (e, imageField = 'image') => {
+    const file = e.target.files[0];
+    const bodyFormData = new FormData();
+    bodyFormData.append('file', file);
+    try {
+      dispatch({ type: 'UPLOAD_REQUEST' });
+      const { data } = await axios.post(
+        '/api/orderNoLogins/upload',
+        bodyFormData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      dispatch({ type: 'UPLOAD_SUCCESS' });
+      setValue(imageField, data.secure_url);
+      enqueueSnackbar('File uploaded successfully', { variant: 'success' });
+    } catch (err) {
+      dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+      enqueueSnackbar(getError(err), { variant: 'error' });
+    }
   };
   return (
     <Layout title="Shipping Address">
@@ -296,19 +319,6 @@ export default function ProjectInfo() {
             ></Controller>
           </ListItem>
           <ListItem>
-            <Button
-              variant="contained"
-              type="button"
-              color="secondary"
-              onClick={chooseLocationHandler}
-            >
-              Choose on map
-            </Button>
-            <Typography>
-              {location.lat && `${location.lat}, ${location.lat}`}
-            </Typography>
-          </ListItem>
-          <ListItem>
             <Controller
               name="projectInformation"
               control={control}
@@ -329,6 +339,34 @@ export default function ProjectInfo() {
                 ></TextField>
               )}
             ></Controller>
+          </ListItem>
+          <ListItem>
+            <Controller
+              name="image"
+              control={control}
+              defaultValue="Upload your photos."
+              rules={{
+                required: false,
+              }}
+              render={({ field }) => (
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  id="image"
+                  label="Image. It is optional."
+                  error={Boolean(errors.image)}
+                  helperText={errors.image ? 'Image is required' : ''}
+                  {...field}
+                ></TextField>
+              )}
+            ></Controller>
+          </ListItem>
+          <ListItem>
+            <Button variant="contained" component="label">
+              Upload File
+              <input type="file" onChange={uploadHandler} hidden />
+            </Button>
+            {loadingUpload && <CircularProgress />}
           </ListItem>
           <ListItem>
             <Button variant="contained" type="submit" fullWidth color="primary">

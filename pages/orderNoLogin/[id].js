@@ -137,7 +137,7 @@ function OrderNoLogin({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Project Address
+                    Project Information
                   </Typography>
                 </ListItem>
                 <ListItem>Name: {shippingAddressNoLogin.fullName}, </ListItem>
@@ -242,20 +242,6 @@ function OrderNoLogin({ params }) {
                     </Grid>
                   </Grid>
                 </ListItem>
-
-                {userInfo.isAdmin && !orderNoLogin.isDelivered ? (
-                  <ListItem>
-                    {loadingDeliver && <CircularProgress />}
-                    <Button
-                      fullWidth
-                      variant="contained"
-                      color="primary"
-                      onClick={deliverOrderNoLoginHandler}
-                    >
-                      Quote a Request
-                    </Button>
-                  </ListItem>
-                ) : null}
               </List>
             </Card>
           </Grid>

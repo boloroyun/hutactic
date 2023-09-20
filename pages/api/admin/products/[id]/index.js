@@ -25,6 +25,8 @@ handler.put(async (req, res) => {
     product.featuredImage = req.body.featuredImage;
     product.isFeatured = req.body.isFeatured;
     product.brand = req.body.brand;
+    product.supplier = req.body.supplier;
+    product.supplierAddress = req.body.supplierAddress;
     product.countInStock = req.body.countInStock;
     product.description = req.body.description;
     await product.save();

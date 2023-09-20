@@ -294,7 +294,7 @@ export default function ProjectInfoNoLogin() {
             <Controller
               name="image"
               control={control}
-              defaultValue="Upload your project picture and room schema"
+              defaultValue="Upload your photos."
               rules={{
                 required: false,
               }}
@@ -303,7 +303,7 @@ export default function ProjectInfoNoLogin() {
                   variant="outlined"
                   fullWidth
                   id="image"
-                  label="Image"
+                  label="Image. It is optional."
                   error={Boolean(errors.image)}
                   helperText={errors.image ? 'Image is required' : ''}
                   {...field}

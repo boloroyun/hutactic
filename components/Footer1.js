@@ -61,18 +61,7 @@ export default function Footer1() {
           <Typography component="h1">Contact Us</Typography>
           <Divider light />
           <Typography>Phone: 703-909-3897</Typography>
-          <Typography marginBottom={5}>
-            Email: boloroyun@artgranitedoes.com
-          </Typography>
-
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.239332386159!2d-77.45185368464969!3d38.89564197957093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b64720d18f9f3b%3A0xfafd56156fada977!2sArt%20Granite%20Inc!5e0!3m2!1sen!2sus!4v1635782774750!5m2!1sen!2sus"
-            width={400}
-            height="454"
-            margin="auto"
-            style={{ border: '0' }}
-            loading="lazy"
-          ></iframe>
+          <Typography marginBottom={5}>Email: info@hutactic.com</Typography>
         </Grid>
         <Grid item md={6} sx={12}>
           <Card

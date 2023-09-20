@@ -101,13 +101,15 @@ export default function ProductScreen(props) {
       </Box>
       <Grid container spacing={1}>
         <Grid item md={6} xs={12}>
-          <Image
-            src={product.image}
-            alt={product.name}
-            width={1000}
-            height={550}
-            layout="responsive"
-          ></Image>
+          {product.image && (
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={1000}
+              height={550}
+              layout="responsive"
+            ></Image>
+          )}
         </Grid>
         <Grid item md={3} xs={12}>
           <List>
@@ -120,7 +122,15 @@ export default function ProductScreen(props) {
               <Typography>Category: {product.category}</Typography>
             </ListItem>
             <ListItem>
-              <Typography>Brand: {product.brand}</Typography>
+              <Typography>Brand: {product.brand} </Typography>
+            </ListItem>
+            <ListItem>
+              <Typography>Supplier Name: {product.supplier}</Typography>
+            </ListItem>
+            <ListItem>
+              <Typography>
+                Supplier Address: {product.supplierAddress}
+              </Typography>
             </ListItem>
             <ListItem>
               <Rating value={product.rating} readOnly></Rating>
@@ -244,11 +254,13 @@ export default function ProductScreen(props) {
       ) : (
         <Card sx={{ width: '100%', borderRadius: '50%' }}>
           <Box sx={{ position: 'relative' }}>
-            <CardMedia
-              component="img"
-              height="388"
-              image={product.featuredImage}
-            />
+            {product.featuredImage && (
+              <CardMedia
+                component="img"
+                height="388"
+                image={product.featuredImage}
+              />
+            )}
           </Box>
         </Card>
       )}

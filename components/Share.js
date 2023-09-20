@@ -17,19 +17,19 @@ export default function Share() {
   return (
     <>
       <Typography>Share on</Typography>
-      <FacebookShareButton url={'https://art-granite.vercel.app/'}>
+      <FacebookShareButton url={'https://hutactic.com/'}>
         <FacebookIcon size={32} round />
       </FacebookShareButton>
-      <PinterestShareButton url={'https://art-granite.vercel.app/'}>
+      <PinterestShareButton url={'https://hutactic.com/'}>
         <PinterestIcon size={32} round />
       </PinterestShareButton>
-      <RedditShareButton url={'https://art-granite.vercel.app/'}>
+      <RedditShareButton url={'https://hutactic.com/'}>
         <RedditIcon size={32} round />
       </RedditShareButton>
-      <WhatsappShareButton url={'https://art-granite.vercel.app/'}>
+      <WhatsappShareButton url={'https://hutactic.com/'}>
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
-      <LinkedinShareButton url={'https://art-granite.vercel.app/'}>
+      <LinkedinShareButton url={'https://hutactic.com/'}>
         <LinkedinIcon size={32} round />
       </LinkedinShareButton>
     </>

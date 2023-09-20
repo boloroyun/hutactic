@@ -92,6 +92,8 @@ function ProductEdit({ params }) {
           setIsFeatured(data.isFeatured);
           setValue('category', data.category);
           setValue('brand', data.brand);
+          setValue('supplier', data.supplier);
+          setValue('supplierAddress', data.supplierAddress);
           setValue('countInStock', data.countInStock);
           setValue('description', data.description);
         } catch (err) {
@@ -131,6 +133,8 @@ function ProductEdit({ params }) {
     image,
     featuredImage,
     brand,
+    supplier,
+    supplierAddress,
     countInStock,
     description,
   }) => {
@@ -148,6 +152,8 @@ function ProductEdit({ params }) {
           isFeatured,
           featuredImage,
           brand,
+          supplier,
+          supplierAddress,
           countInStock,
           description,
         },
@@ -381,6 +387,54 @@ function ProductEdit({ params }) {
                             label="Brand"
                             error={Boolean(errors.brand)}
                             helperText={errors.brand ? 'Brand is required' : ''}
+                            {...field}
+                          ></TextField>
+                        )}
+                      ></Controller>
+                    </ListItem>
+                    <ListItem>
+                      <Controller
+                        name="supplier"
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                          required: true,
+                        }}
+                        render={({ field }) => (
+                          <TextField
+                            variant="outlined"
+                            fullWidth
+                            id="supplier"
+                            label="Supplier Name"
+                            error={Boolean(errors.supplier)}
+                            helperText={
+                              errors.supplier ? 'Supplier name is required' : ''
+                            }
+                            {...field}
+                          ></TextField>
+                        )}
+                      ></Controller>
+                    </ListItem>
+                    <ListItem>
+                      <Controller
+                        name="supplierAddress"
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                          required: true,
+                        }}
+                        render={({ field }) => (
+                          <TextField
+                            variant="outlined"
+                            fullWidth
+                            id="supplierAddress"
+                            label="Supplier Address"
+                            error={Boolean(errors.supplierAddress)}
+                            helperText={
+                              errors.supplierAddress
+                                ? 'Supplier address is required'
+                                : ''
+                            }
                             {...field}
                           ></TextField>
                         )}

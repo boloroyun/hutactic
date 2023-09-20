@@ -16,21 +16,19 @@ export default function Text() {
   return (
     <div>
       <h1>Social Share - GeeksforGeeks</h1>
-      <FacebookShareButton
-        url={'http://localhost:3000/product/sample-slug-0.3545137337060207'}
-      >
+      <FacebookShareButton url={'https://hutactic.com/'}>
         <FacebookIcon size={32} round />
       </FacebookShareButton>
-      <PinterestShareButton url={'http://localhost:3000'}>
+      <PinterestShareButton url={'https://hutactic.com/'}>
         <PinterestIcon size={32} round />
       </PinterestShareButton>
-      <RedditShareButton url={'http://localhost:3000'}>
+      <RedditShareButton url={'https://hutactic.com/'}>
         <RedditIcon size={32} round />
       </RedditShareButton>
-      <WhatsappShareButton url={'http://localhost:3000'}>
+      <WhatsappShareButton url={'https://hutactic.com/'}>
         <WhatsappIcon size={32} round />
       </WhatsappShareButton>
-      <LinkedinShareButton url={'http://localhost:3000'}>
+      <LinkedinShareButton url={'https://hutactic.com/'}>
         <LinkedinIcon size={32} round />
       </LinkedinShareButton>
     </div>

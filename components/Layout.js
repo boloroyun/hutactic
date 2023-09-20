@@ -16,7 +16,6 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import Footer from '../components/Footer';
-import Footer1 from '../components/Footer1';
 
 import {
   AppBar,
@@ -40,7 +39,6 @@ import {
 } from '@mui/material';
 
 import { Store } from '../utils/Store';
-import Share from './Share';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
@@ -70,10 +68,10 @@ export default function Layout({ title, description, children }) {
     palette: {
       mode: darkMode ? 'dark' : 'light',
       primary: {
-        main: '#208080',
+        main: '#208088',
       },
       secondary: {
-        main: '#208080',
+        main: '#208088',
       },
     },
   });
@@ -157,7 +155,7 @@ export default function Layout({ title, description, children }) {
   return (
     <>
       <Head>
-        <title>{title ? `${title} - Kingstone` : 'Kingstone'}</title>
+        <title>{title ? `${title} - Hutactic` : 'Hutactic'}</title>
         {description && <meta name="description" content={description}></meta>}
       </Head>
       <ThemeProvider theme={theme}>
@@ -175,7 +173,7 @@ export default function Layout({ title, description, children }) {
               </IconButton>
               <NextLink href="/" passHref>
                 <Link>
-                  <Typography sx={classes.brand}>Kingstone</Typography>
+                  <Typography sx={classes.brand}> HUTACTIC LLC</Typography>
                 </Link>
               </NextLink>
             </Box>
@@ -255,9 +253,7 @@ export default function Layout({ title, description, children }) {
                 ))}
               </List>
             </Drawer>
-            <Box>
-              <Share />
-            </Box>
+            <Box></Box>
             <Box sx={isDesktop ? classes.visible : classes.hidden}>
               <form onSubmit={submitHandler}>
                 <Box sx={classes.searchForm}>
@@ -354,7 +350,6 @@ export default function Layout({ title, description, children }) {
         <Container component="main" sx={classes.main}>
           {children}
         </Container>
-        <Footer1 />
         <Footer />
       </ThemeProvider>
     </>

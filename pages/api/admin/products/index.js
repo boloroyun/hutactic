@@ -22,6 +22,8 @@ handler.post(async (req, res) => {
     price: 0,
     category: 'sample category',
     brand: 'sample brand',
+    supplier: 'supplier name',
+    supplierAddress: ' supplier address',
     countInStock: 0,
     description: 'sample description',
     rating: 0,

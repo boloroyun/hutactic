@@ -5,7 +5,6 @@ import {
   Grid,
   Link,
   Typography,
-  Box,
   CardActionArea,
   Card,
   CardMedia,
@@ -16,7 +15,7 @@ import Layout from '../components/Layout';
 import db from '../utils/db';
 import Product from '../models/Product';
 import Service from '../models/Service';
-
+import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
@@ -56,47 +55,12 @@ export default function Home(props) {
         ></meta>
         <link></link>
       </Head>
-      <Carousel>
-        {featuredProducts.map((product) => (
-          <NextLink
-            key={product._id}
-            href={`/product/${product.slug}`}
-            passHref
-          >
-            <Link sx={classes.flex}>
-              <Card sx={{ width: '100%', borderRadius: '50%' }}>
-                <Box sx={{ position: 'relative' }}>
-                  <CardMedia
-                    component="img"
-                    height="388"
-                    image={product.featuredImage}
-                  />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      height: 38,
-                      width: '100%',
-                      bgcolor: 'rgba(0, 0, 0, 0.38)',
-                      color: 'white',
-                      padding: '10px',
-                    }}
-                  >
-                    <Typography variant="h6">Our Projects</Typography>
-                    <Typography variant="body1">
-                      {product.category}: /{product.name}/
-                    </Typography>
-                  </Box>
-                </Box>
-              </Card>
-            </Link>
-          </NextLink>
-        ))}
-      </Carousel>
+      <Typography variant="h1" align="center">
+        Ask quotes online on your chosen materials!
+      </Typography>
+
       <Grid container spacing={1}>
         <Grid item md={12} sx={12}>
-          <Typography variant="h1">Popular Products</Typography>
           <NextLink href="/search" passHref>
             <Button color="secondary">
               Watch all stones
@@ -123,56 +87,39 @@ export default function Home(props) {
           </Card>
         </Grid>
       </Grid>
-      <Typography variant="h6">Specials</Typography>
+      <Grid item md={12} sx={12}>
+        <Typography variant="h1" align="center">
+          Our Portfolios
+        </Typography>
+        <Carousel>
+          {featuredProducts.map((product) => (
+            <NextLink
+              key={product._id}
+              href={`/product/${product.slug}`}
+              passHref
+            >
+              <Link sx={classes.flex}>
+                <Image
+                  src={product.featuredImage}
+                  height={388}
+                  width={1200}
+                  objectFit="fill"
+                  alt={product.name}
+                />
+              </Link>
+            </NextLink>
+          ))}
+        </Carousel>
+      </Grid>
 
-      <Carousel>
-        {featuredProducts.map((product) => (
-          <NextLink
-            key={product._id}
-            href={`/product/${product.slug}`}
-            passHref
-          >
-            <Link sx={classes.flex}>
-              <Card sx={{ width: '100%', borderRadius: '88%' }}>
-                <Box sx={{ position: 'relative' }}>
-                  <CardMedia
-                    component="img"
-                    height="388"
-                    image={product.featuredImage}
-                  />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      height: 38,
-                      width: '100%',
-                      bgcolor: 'rgba(0, 0, 0, 0.38)',
-                      color: 'white',
-                      padding: '10px',
-                    }}
-                  >
-                    <Typography variant="h6">Specials</Typography>
-                    <Typography variant="body1">
-                      {product.category}: /{product.name}/
-                    </Typography>
-                  </Box>
-                </Box>
-              </Card>
-            </Link>
-          </NextLink>
-        ))}
-      </Carousel>
       <Grid container spacing={1}>
         <Grid item md={12} sx={12}>
+          <Typography variant="h1" align="center">
+            Our Services
+          </Typography>
+
           <Card sx={classes.section}>
             <List>
-              <ListItem>
-                {' '}
-                <Typography component="h1" variant="h1">
-                  Our Services
-                </Typography>
-              </ListItem>
               <ListItem>
                 {' '}
                 <Grid container spacing={5}>
@@ -187,24 +134,26 @@ export default function Home(props) {
           </Card>
         </Grid>
       </Grid>
-      <ListItem>
-        <Typography variant="h1" color="error">
-          Specials
-        </Typography>
-      </ListItem>
-      <ListItem>
-        <Card>
-          <CardActionArea>
-            <CardMedia
-              component="video"
-              autoPlay
-              controls
-              margin="auto"
-              src="images/stoneking.mp4"
-            />
-          </CardActionArea>
-        </Card>
-      </ListItem>
+      <Grid container spacing={1}>
+        <Grid item md={12} sx={12}>
+          <Typography variant="h1" align="center" color="error">
+            Special Offers
+          </Typography>
+          <ListItem>
+            <Card>
+              <CardActionArea>
+                <CardMedia
+                  component="video"
+                  autoPlay
+                  controls
+                  margin="auto"
+                  src="images/stoneking.mp4"
+                />
+              </CardActionArea>
+            </Card>
+          </ListItem>
+        </Grid>
+      </Grid>
     </Layout>
   );
 }

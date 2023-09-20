@@ -201,6 +201,7 @@ function AdminProdcuts() {
                       <TableHead>
                         <TableRow>
                           <TableCell>ID</TableCell>
+                          <TableCell>SUPPLIER</TableCell>
                           <TableCell>NAME</TableCell>
                           <TableCell>PRICE</TableCell>
                           <TableCell>CATEGORY</TableCell>
@@ -215,6 +216,7 @@ function AdminProdcuts() {
                             <TableCell>
                               {product._id.substring(20, 24)}
                             </TableCell>
+                            <TableCell>{product.supplier}</TableCell>
                             <TableCell>{product.name}</TableCell>
                             <TableCell>${product.price}</TableCell>
                             <TableCell>{product.category}</TableCell>

@@ -35,7 +35,7 @@ const classes = {
   },
   // header
   appbar: {
-    backgroundColor: '#009688',
+    backgroundColor: '#454545',
     '& a': {
       color: '#ffffff',
       marginLeft: 1,
@@ -46,7 +46,7 @@ const classes = {
   },
   brand: {
     fontWeight: 'bold',
-    fontSize: '1.5rem',
+    fontSize: '0.9rem',
   },
   grow: {
     flexGrow: 1,
@@ -82,7 +82,7 @@ const classes = {
   },
   // Footer
   footer: {
-    backgroundColor: '#009688',
+    backgroundColor: '#454545',
     width: `100%`,
     position: 'relative',
     overflow: 'hidden',
@@ -92,7 +92,7 @@ const classes = {
     flexGrow: '1',
   },
   link: {
-    fontSize: '1.25em',
+    fontSize: '1.2em',
     color: '#fff',
     '&:hover': {
       color: 'black',

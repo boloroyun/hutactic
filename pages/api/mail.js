@@ -13,8 +13,8 @@ Message: ${body.message}
 
   const data = {
     to: body.email,
-    from: 'boloroyun@artgranitedoes.com',
-    subject: 'Quoted Price from Art Granite',
+    from: 'info@hutactic.com',
+    subject: 'Quote from Hutactic LLC',
     text: message,
     html: message.replace(/\r\n/g, '<br>'),
   };

@@ -102,7 +102,7 @@ export default function Search(props) {
           <List>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Stone Categories</Typography>
+                <Typography>Product Categories</Typography>
                 <Select fullWidth value={category} onChange={categoryHandler}>
                   <MenuItem value="all">All</MenuItem>
                   {categories &&
@@ -116,7 +116,7 @@ export default function Search(props) {
             </ListItem>
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Stone Brands</Typography>
+                <Typography>Product Brands</Typography>
                 <Select value={brand} onChange={brandHandler} fullWidth>
                   <MenuItem value="all">All</MenuItem>
                   {brands &&
@@ -131,7 +131,7 @@ export default function Search(props) {
 
             <ListItem>
               <Box sx={classes.fullWidth}>
-                <Typography>Stone Ratings</Typography>
+                <Typography>Product Ratings</Typography>
                 <Select value={rating} onChange={ratingHandler} fullWidth>
                   <MenuItem value="all">All</MenuItem>
                   {ratings.map((rating) => (

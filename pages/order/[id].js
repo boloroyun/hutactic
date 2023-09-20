@@ -126,7 +126,7 @@ function Order({ params }) {
               <List>
                 <ListItem>
                   <Typography component="h2" variant="h2">
-                    Project Address
+                    Project Information
                   </Typography>
                 </ListItem>
                 <ListItem>
@@ -140,7 +140,7 @@ function Order({ params }) {
                 </ListItem>
 
                 <ListItem>
-                  Project Address:{''}
+                  Project Address :{''}
                   {shippingAddress.address}, {shippingAddress.city},{' '}
                   {shippingAddress.postalCode}, {shippingAddress.country}
                   &nbsp;

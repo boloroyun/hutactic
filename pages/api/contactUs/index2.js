@@ -29,8 +29,8 @@ Text: ${body.message}\r\n
     mail.addAttachment(attachment);
 
     const data = {
-      to: 'boloroyun@artgranitedoes.com',
-      from: 'boloroyun@artgranitedoes.com',
+      to: 'info@hutactic.com',
+      from: body.email,
       subject: `New message from ${body.fullname}`,
       text: message,
       attachment: req.file,
