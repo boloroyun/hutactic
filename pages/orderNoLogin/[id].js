@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import dynamic from 'next/dynamic';
 import Layout from '../../components/Layout';
-import { Store } from '../../utils/Store';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import {
@@ -15,14 +14,12 @@ import {
   TableCell,
   Link,
   CircularProgress,
-  Button,
   Card,
   List,
   ListItem,
 } from '@mui/material';
 import axios from 'axios';
 import classes from '../../utils/classes';
-import { useSnackbar } from 'notistack';
 import { getError } from '../../utils/error';
 
 function reducer(state, action) {
@@ -59,16 +56,12 @@ function reducer(state, action) {
 function OrderNoLogin({ params }) {
   const orderNoLoginId = params.id;
 
-  const { state } = useContext(Store);
-  const { userInfo } = state;
-  const [
-    { loading, error, orderNoLogin, loadingDeliver, successDeliver },
-    dispatch,
-  ] = useReducer(reducer, {
-    loading: true,
-    orderNoLogin: {},
-    error: '',
-  });
+  const [{ loading, error, orderNoLogin, successDeliver }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      orderNoLogin: {},
+      error: '',
+    });
   const {
     shippingAddressNoLogin,
     orderNoLoginItems,
@@ -100,26 +93,6 @@ function OrderNoLogin({ params }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderNoLogin, successDeliver]);
-
-  const { enqueueSnackbar } = useSnackbar();
-
-  async function deliverOrderNoLoginHandler() {
-    try {
-      dispatch({ type: 'DELIVER_REQUEST' });
-      const { data } = await axios.put(
-        `/api/orderNoLogins/${orderNoLogin._id}/deliver`,
-        {},
-        {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-      enqueueSnackbar('Request is quoted', { variant: 'success' });
-    } catch (err) {
-      dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
-      enqueueSnackbar(getError(err), { variant: 'error' });
-    }
-  }
 
   return (
     <Layout title={`Order ${orderNoLoginId}`}>
