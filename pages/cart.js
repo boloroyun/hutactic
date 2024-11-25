@@ -139,7 +139,7 @@ function CartScreen() {
                 <ListItem>
                   <NextLink href="/search" passHref>
                     <Button color="primary" variant="contained" fullWidth>
-                      Go back to products
+                      Add more products to the list to receive quotes
                     </Button>
                   </NextLink>
                 </ListItem>
